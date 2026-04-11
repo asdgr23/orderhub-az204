@@ -50,5 +50,5 @@ jobs:
         with:
           app-name: 'app-orderhub-api-angie'
           slot-name: 'Production'
-          package: .
+          package: ./api
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_B60ADBC6051D423A9FAFEE269A8C7D81 }}}}
