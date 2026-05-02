@@ -15,15 +15,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Zip artifact
+      - name: Move API to root
         run: |
-          cd src/api
-          zip -r ../../app.zip .
+          cp -r src/api/* .
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'app-orderhub-api-angie'
           slot-name: 'Production'
-          package: app.zip
+          package: .
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_B60ADBC6051D423A9FAFEE269A8C7D81 }}
