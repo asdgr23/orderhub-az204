@@ -5,24 +5,31 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 async function bootstrap() { 
   const app = await NestFactory.create(AppModule); 
   
-app.enableCors({ 
-  origin: '*', 
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS', 
-  allowedHeaders: 'Content-Type, Authorization', 
-}); 
+  app.enableCors({ 
+    origin: '*', 
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS', 
+    allowedHeaders: 'Content-Type, Authorization', 
+  }); 
 
-const config = new DocumentBuilder() 
-  .setTitle('OrderHub API') 
-  .setDescription('API base para la Semana 1 de AZ-204') 
-  .setVersion('1.0') 
-  .build();
+  
+  app.getHttpAdapter().get('/', (req, res) => {
+    res.send('API running OK');
+  });
 
-const document = SwaggerModule.createDocument(app, config); 
-SwaggerModule.setup('swagger', app, document); 
+  const config = new DocumentBuilder() 
+    .setTitle('OrderHub API') 
+    .setDescription('API base para la Semana 1 de AZ-204') 
+    .setVersion('1.0') 
+    .build();
 
-const port = process.env.PORT || 3000; 
-await app.listen(port, '0.0.0.0');
+  const document = SwaggerModule.createDocument(app, config); 
+  SwaggerModule.setup('swagger', app, document); 
 
-console.log('PORT desde Azure: ', process.env.PORT);
+  const port = process.env.PORT || 8080; 
+
+  await app.listen(port, '0.0.0.0');
+
+  console.log('App running on port:', port);
 }
+
 bootstrap();
