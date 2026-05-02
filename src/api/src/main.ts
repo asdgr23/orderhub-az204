@@ -3,14 +3,19 @@ import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() { 
+  console.log('Starting APP...');
+
   const app = await NestFactory.create(AppModule); 
+  
+  console.log('APP created');
   
   app.enableCors({ 
     origin: '*', 
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS', 
     allowedHeaders: 'Content-Type, Authorization', 
   }); 
-
+ 
+  
   
   app.getHttpAdapter().get('/', (req, res) => {
     res.send('API running OK');
