@@ -57,7 +57,7 @@ jobs:
           app-name: 'app-orderhub-api-angie'
           slot-name: 'staging'
           package: .
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_dqlTGbuGwa7EimtAhuaEqnB1c9fm0DzMhfpejNhjEGyZdGJ0nhrJjJuyLhc7 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_STAGING_qlTGbuGwa7EimtAhuaEqnB1c9fm0DzMhfpejNhjEGyZdGJ0nhrJjJuyLhc7}}
 
   deploy-production:
     runs-on: ubuntu-latest
